@@ -1,9 +1,9 @@
 from machine import Pin
 import time
-D2 = Pin(2, Pin.OUT)
+D4 = Pin(2, Pin.OUT)
 
 while(True):
-    D2.off() 
+    D4.off() 
     time.sleep(2) 
-    D2.on()
+    D4.on()
     time.sleep(2)                 

@@ -24,9 +24,12 @@ Connect to RELP (Read Evaluate Print Loop) with screen
 
 RELP is basically an onboard python console
 
-Use Ampy for load script
+Use Ampy for run script
 
 ##### NOTE: You have to use ampy or screen. They cannot be used together otherwise it fails to connect
 
 `ampy --port /dev/ttyUSB0 run blink/blink.py`
 
+Permanently run the script (Also: Run on boot)
+
+`ampy --port /dev/ttyUSB0 put blink/blink.py /main.py`
