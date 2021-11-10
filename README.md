@@ -33,3 +33,38 @@ Use Ampy for run script
 Permanently run the script (Also: Run on boot)
 
 `ampy --port /dev/ttyUSB0 put blink/blink.py /main.py`
+
+
+## Networking
+
+Connect the NodeMcu to your wifi
+
+Just follow [this steps](https://docs.micropython.org/en/latest/esp8266/quickref.html#networking)
+
+Leave this functions here Micropython says it's useful... I have no idea
+
+```
+def do_connect():
+    import network
+    wlan = network.WLAN(network.STA_IF)
+    wlan.active(True)
+    if not wlan.isconnected():
+        print('connecting to network...')
+        wlan.connect('essid', 'password')
+        while not wlan.isconnected():
+            pass
+    print('network config:', wlan.ifconfig())
+```
+
+
+## Installing package
+
+You can install package with your RELP (with screen)
+
+Import upip:
+
+```
+import upip
+upip.install('urequests')
+```
+
