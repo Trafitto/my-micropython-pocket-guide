@@ -16,6 +16,41 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(('', 80))
 s.listen(5)
 
+class StatusCode(object):
+    def __init__(self, code, reason):
+          self.code = code
+          self.reason = reason
+
+STATUS_MAP = {
+  '200': StatusCode(200, 'OK')
+}
+
+
+class Response():
+    send_buffer_size = 1024
+    http_version = 'HTTP/1.0'
+
+    def __init__(self, status_code=204, body='', headers={}):
+          self.status_code = str(status_code)
+          self.headers = headers.copy()
+          
+          self.body = json.dumps(body).encode()
+          self.headers['Content-Type'] = 'application/json'
+
+    def close(self, connection):
+          
+
+    def write(self, connection):
+          connection.send('{http_version} {status_code} {reason} \r\n'.format(
+            http_version=self.http_version,
+            status_code=STATUS_MAP[self.status_code].code,
+            reason=STATUS_MAP[self.status_code].reason
+          ))
+          connection.sendall(self.body)
+
+          
+
+
 def mini_blink(pin):
     pin.off() 
     time.sleep(2) 
